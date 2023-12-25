@@ -116,3 +116,6 @@ At the first interaction you will have the choice between multiple integration :
 #### Dockerode  
 
  * docker.getContainer(idContainer)
+ * container.inspect() 
+ * container.stop()
+ * container.start()
