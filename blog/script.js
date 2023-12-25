@@ -8,10 +8,12 @@ const readline = require('node:readline').createInterface({
 });
 
 
+// ce script a étais tester avec l'API (blog) donnée :
 
 
 
-// Fonction pour démarrer un service Docker
+// Fonction pour démarrer un container Docker a partir d'une image
+
 async function startDockerService(imageName, containerName, startCommand) {
   try {
     const container = await docker.createContainer({
@@ -27,12 +29,6 @@ async function startDockerService(imageName, containerName, startCommand) {
     return null;
   }
 }
-
-
-
-
-
-
 
 // Construction de l'image à partir du répertoire contextuel
 
@@ -61,6 +57,9 @@ async function startDockerService(imageName, containerName, startCommand) {
 
 
 // Fonction pour tester un service Docker
+// docker.getContainer est une fonction qui viens du package Dockerode et qui prends en paramètre
+// l'Id du container pour pouvoir le manipuler par la suite
+
 function testServiceDocker(idContainer) {
   const res = docker.getContainer(idContainer)
   let state = '';
@@ -73,7 +72,7 @@ function testServiceDocker(idContainer) {
   console.log(`État du service ${res.id} : ${state}`);
 }
 
-// Exemple : Déploiement et test d'un microservice
+//  Déploiement et test d'un microservice
 async function deployAndTestMicroservice() {
   const serviceName = ""; // Nom de votre service
   const imageName = ""; // Nom de l'image Docker
@@ -94,7 +93,7 @@ async function deployAndTestMicroservice() {
 }
 
 // Appel de la fonction pour déployer et tester un microservice
- //deployAndTestMicroservice();
+//deployAndTestMicroservice();
 
 // Fonction pour supprimer un service Docker
 async function RemoveDockerService(container) {
@@ -115,6 +114,12 @@ async function stopDockerService(container) {
     console.error('Erreur lors de l\'arrêt du service Docker :', err);
   }
 }
+
+  // automatisation est la fonction Principal du code , elle permet a l'utilisateur d'automatiser ces taches via le terminal
+  // en fonction de ses besoins , les mots clés a utilisé seront les valeurs des "case" , il se peut
+  //qu'il aura besoin de répondre a d'autre question en fonction de la function déclencher
+
+  // Exemple: case'info-container-service' il devera donner l'Id du container dont il souhaite l'info
 
 
  function automatisation(){
