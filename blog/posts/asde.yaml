@@ -1,12 +1,12 @@
 build-image:
   type: docker
-  name: test/client
+  name: test/post
   tag: latest
   dockerfilePath: .
 
 build-container:
   type: docker
-  nameImage: test/client
+  nameImage: test/post
   options:
     variable-env:
       ENV_VAR_1: valeur_1
@@ -15,4 +15,3 @@ build-container:
       - "8080:80"
     volumes:
       - /chemin/local:/chemin/conteneur
-

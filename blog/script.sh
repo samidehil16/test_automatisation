@@ -69,9 +69,15 @@ case $COMMAND in
          listFolder=$(find "$directory" -mindepth 1 -maxdepth 1 -type d -exec test -e '{}/asde.yaml' \; -print)
         #echo "$listFolder"
 
-        for element in "${listFolder[@]}"
-        do
-             yq e '.buildimage.type' asde.yaml 
+        for element in $listFolder
+        do       
+            typeImage=$(yq e ".build-image.type" $element/asde.yaml)
+            nameImage=$(yq e ".build-image.name" $element/asde.yaml)
+            pathDockerfile=$(yq e ".build-image.dockerfilePath" $element/asde.yaml)
+
+            if $typeImage == "docker"; then                
+                docker build -t "$nameImage" "$pathDockerfile"
+            fi 
         done
 
 
