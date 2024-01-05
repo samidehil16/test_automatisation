@@ -1,0 +1,12 @@
+buildimage:
+  -type: 'docker'
+      name: 'test/client'
+      tag: "latest"
+      dockerfilePath: '.'
+
+build-container:
+  - type: "docker"
+        nameImage: ''
+            -options:
+                variable-env:
+                ports:  
