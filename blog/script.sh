@@ -69,17 +69,52 @@ case $COMMAND in
          listFolder=$(find "$directory" -mindepth 1 -maxdepth 1 -type d -exec test -e '{}/asde.yaml' \; -print)
         #echo "$listFolder"
 
-        for element in $listFolder
-        do       
-            typeImage=$(yq e ".build-image.type" $element/asde.yaml)
-            nameImage=$(yq e ".build-image.name" $element/asde.yaml)
-            pathDockerfile=$(yq e ".build-image.dockerfilePath" $element/asde.yaml)
+        # vérificaiton qu'on ai bien des sous dossiers avec le fichier "asde.yaml"
+        if [ "$listFolder" ]; then
 
-            if $typeImage == "docker"; then                
-                docker build -t "$nameImage" "$pathDockerfile"
-            fi 
-        done
+                for element in $listFolder
+                do   
 
+                    #Récupération et itération des services 
+                    services_length=$(yq e '.services | length' $element/asde.yaml)
+                    for ((i = 0; i < services_length; i++)); do
+                        # echo "Service $i:"
+                        # yq eval ".services[$i]" $element/asde.yaml  #affichage du service
+                        # echo "ce service viens du fichier $element/asde.yaml"
+                        
+                        action=$(yq e ".services[$i].actions[].action" $element/asde.yaml)
+                        type=$(yq e ".services[$i].actions[].types[].type" $element/asde.yaml)
+
+                        # Traitement pour build une image
+                        if [ "$action" = "build-image" ]; then
+                            nameImage=$(yq e ".services[$i].actions[].types[].details.name" $element/asde.yaml)
+                            pathDockerfile=$(yq e ".services[$i].actions[].types[].details.dockerfilePath" $element/asde.yaml)
+                            tag=$(yq e ".services[$i].actions[].types[].details.tag" $element/asde.yaml)
+                            # Avec Docker
+                            if [ "$type" = "docker" ]; then
+                                 docker build -t "$nameImage":"$tag" $pathDockerfile
+                            fi
+                        fi
+
+                            
+                    done
+                   
+                    # if [ "$action" = "build-image" ]; then
+                    #     echo "build-image"
+                    # fi
+
+                    # typeImage=$(yq e "services.name.build-image.type" $element/asde.yaml)
+                    # nameImage=$(yq e ".build-image.name" $element/asde.yaml)
+                    # pathDockerfile=$(yq e ".build-image.dockerfilePath" $element/asde.yaml)
+                    # # build image avec docker
+                    # if [ $typeImage = "docker" ]; then 
+                    #     docker build -t "$nameImage" "$pathDockerfile"
+                    # fi 
+                done
+
+            else 
+                echo " Vos dossiers ne contiennt pas le fichier de configuration 'asde.yaml' "
+        fi
 
 
         ;;
