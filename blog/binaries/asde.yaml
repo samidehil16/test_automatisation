@@ -1,0 +1,12 @@
+services:
+  - name: serviceBinary
+    actions:
+      - action: build
+        types:
+          - type: binary
+            details:
+              name: Program42
+              cwd: ./binaries
+              env:
+                SOME_ENV: SOMEVAL
+                SECOND_ENV: SOMESECOND_VAL  

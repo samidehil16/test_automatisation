@@ -102,6 +102,14 @@ case $COMMAND in
                             if [ "$type" = "docker" ]; then
                                 docker run -p $port $nameImage
                             fi
+                        fi
+                        # Traitement d'un build pour un binaire
+                        if [ "$action" = "build" ]; then
+                            type=$(yq e ".services[$i].actions[].types[].type" $element/asde.yaml)
+                            cwd=$(yq e ".services[$i].actions[].types[].details.cwd" $element/asde.yaml)
+                            if [ "$type" = "binary" ]; then
+                                cmake $cwd && make all . 
+                            fi
                         fi   
                     done
                 done

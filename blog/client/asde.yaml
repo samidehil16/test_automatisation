@@ -1,30 +1,30 @@
-services:
-  # - name: serviceWeb1
-  #   actions:
-  #     - action: build-image
-  #       types:
-  #         - type: docker
-  #           details:
-  #             name: test/client
-  #             tag: latest
-  #             dockerfilePath: ./client
-  # - name: serviceWeb3
-  #   actions:
-  #     - action: build-image
-  #       types:
-  #         - type: docker
-  #           details:
-  #             name: test/client
-  #             tag: latest
-  #             dockerfilePath: ./client
-  - name: serviceWeb5
-    actions:
-      - action: run
-        types:
-          - type: docker
-            details:
-              nameImage: test/client
-              options:
-                ENV_VAR_1: valeur_1
-                port: 8080:80
-                volumes: /chemin/local:/chemin/conteneur
+# services:
+#   - name: serviceWeb1
+#     actions:
+#       - action: build-image
+#         types:
+#           - type: docker
+#             details:
+#               name: test/client
+#               tag: latest
+#               dockerfilePath: ./client
+#   - name: serviceWeb3
+#     actions:
+#       - action: build-image
+#         types:
+#           - type: docker
+#             details:
+#               name: test/client
+#               tag: latest
+#               dockerfilePath: ./client         
+#   - name: serviceWeb5
+#     actions:
+#       - action: run
+#         types:
+#           - type: docker
+#             details:
+#               nameImage: test/client
+#               options:
+#                 ENV_VAR_1: valeur_1
+#                 port: 8080:80
+#                 volumes: /chemin/local:/chemin/conteneur
