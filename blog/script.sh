@@ -71,7 +71,6 @@ case $COMMAND in
 
         # vérificaiton qu'on ai bien des sous dossiers avec le fichier "asde.yaml"
         if [ "$listFolder" ]; then
-
                 for element in $listFolder
                 do   
 
@@ -95,21 +94,16 @@ case $COMMAND in
                                  docker build -t "$nameImage":"$tag" $pathDockerfile
                             fi
                         fi
-
-                            
+                        # Traitement pour run un container
+                        if [ "$action" = "run" ]; then
+                            type=$(yq e ".services[$i].actions[].types[].type" $element/asde.yaml)
+                            nameImage=$(yq e ".services[$i].actions[].types[].details.nameImage" $element/asde.yaml)
+                            port=$(yq e ".services[$i].actions[].types[].details.options.port" $element/asde.yaml)
+                            if [ "$type" = "docker" ]; then
+                                docker run -p $port $nameImage
+                            fi
+                        fi   
                     done
-                   
-                    # if [ "$action" = "build-image" ]; then
-                    #     echo "build-image"
-                    # fi
-
-                    # typeImage=$(yq e "services.name.build-image.type" $element/asde.yaml)
-                    # nameImage=$(yq e ".build-image.name" $element/asde.yaml)
-                    # pathDockerfile=$(yq e ".build-image.dockerfilePath" $element/asde.yaml)
-                    # # build image avec docker
-                    # if [ $typeImage = "docker" ]; then 
-                    #     docker build -t "$nameImage" "$pathDockerfile"
-                    # fi 
                 done
 
             else 

@@ -1,13 +1,13 @@
-services:
-  - name: serviceWeb1
-    actions:
-      - action: build-image
-        types:
-          - type: docker
-            details:
-              name: test/posts
-              tag: latest
-              dockerfilePath: ./posts
+# services:
+#   - name: serviceWeb1
+#     actions:
+#       - action: build-image
+#         types:
+#           - type: docker
+#             details:
+#               name: test/posts
+#               tag: latest
+#               dockerfilePath: ./posts
 
 
 
