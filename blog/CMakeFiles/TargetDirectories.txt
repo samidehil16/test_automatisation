@@ -1,0 +1,3 @@
+/mnt/c/Users/samsa/Desktop/test_automatisation/test_automatisation/blog/CMakeFiles/hello.dir
+/mnt/c/Users/samsa/Desktop/test_automatisation/test_automatisation/blog/CMakeFiles/edit_cache.dir
+/mnt/c/Users/samsa/Desktop/test_automatisation/test_automatisation/blog/CMakeFiles/rebuild_cache.dir

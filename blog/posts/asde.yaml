@@ -1,24 +1,21 @@
-# services:
-#   - name: serviceWeb1
+services:
+  - name: serviceWeb1
+    actions:
+      - action: build-image
+        types:
+          - type: docker
+            details:
+              name: test/posts
+              tag: latest
+              dockerfilePath: ./posts
+#   - name: serviceWeb9
 #     actions:
-#       - action: build-image
+#       - action: run
 #         types:
 #           - type: docker
 #             details:
-#               name: test/posts
-#               tag: latest
-#               dockerfilePath: ./posts
-
-
-
-    # action: run
-    #       type: docker
-    #         nameImage: test/posts
-    #         options:
-    #           variable-env:
-    #             ENV_VAR_1: valeur_1
-    #             ENV_VAR_2: valeur_2
-    #           port: 
-    #             - "8080:80"
-    #           volumes:
-    #             - /chemin/local:/chemin/conteneur
+#               nameImage: test/posts
+#               options:
+#                 ENV_VAR_1: valeur_1
+#                 port: 8080:80
+#                 volumes: /chemin/local:/chemin/conteneur
