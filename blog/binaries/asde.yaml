@@ -9,4 +9,14 @@ services:
               cwd: ./binaries
               env:
                 SOME_ENV: SOMEVAL
-                SECOND_ENV: SOMESECOND_VAL  
+                SECOND_ENV: SOMESECOND_VAL
+      - action: install
+        types:
+          - type: natif
+            details:
+              name: Program30
+              cwd: ./binaries
+              cmd: echo "install"
+              env:
+                SOME_ENV: SOMEVAL
+                SECOND_ENV: SOMESECOND_VAL   

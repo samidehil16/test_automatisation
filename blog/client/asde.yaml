@@ -7,7 +7,17 @@ services:
             details:
               name: test/client
               tag: latest
-              dockerfilePath: ./client    
+              dockerfilePath: ./client          
+      - action: test
+        types:
+          - type: nodejs
+            details:
+              path: ./client
+              cmd: npm test
+              options:
+                env: NODE_ENV=test
+
+                  
 #   - name: serviceWeb5
 #     actions:
 #       - action: run

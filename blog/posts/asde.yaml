@@ -1,5 +1,5 @@
 services:
-  - name: serviceWeb1
+  - name: serviceWeb10
     actions:
       - action: build-image
         types:
