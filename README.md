@@ -3,7 +3,7 @@
 
 An automated script that allows you to deploy Docker services and manage and test micro-services
 
-
+blog -> "asde.sh"
 
 
 ## Requirements
